@@ -2,6 +2,9 @@ import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { useMoralisQuery, useMoralis } from "react-moralis" // To get data from our DATABASE -> eg. show only active NFTs
 import NFTBox from "../components/NFTBox" // Show NFT Image
+import networkMapping from "../constants/networkMapping.json"
+import GET_ACTIVE_ITEMS from "../constants/subgraphQueries" // TheGraph 
+import { useQuery } from "@apollo/client"  // TheGraph 
 
 export default function Home() {
     // We are indexing the events off-chain and then read them from data-base.
@@ -11,14 +14,12 @@ export default function Home() {
     // TheGraph -> does this decentralized.
     // Moralis -> does this centralized. (like etherscan or opensea)
 
-    // Get only ACTIVE NFTs from DATABASE -> save tehm on 'listedNfts'
-    const { isWeb3Enabled } = useMoralis()
-    const { data: listedNfts, isFetching: fetchingListedNfts } = useMoralisQuery(
-        // TableName
-        // Function for the query
-        "ActiveItem",
-        (query) => query.limit(10).descending("tokenId") // Only get the first 10
-    )
+    // Get only ACTIVE NFTs from TheGraph query repsonse -> save tehm on 'listedNfts'
+    const { isWeb3Enabled, chainId } = useMoralis()
+    const chainString = chainId ? parseInt(chainId).toString() : "31337"
+    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+
+    const { loading, error, data: listedNfts } = useQuery(GET_ACTIVE_ITEMS)
 
     return (
         <div className="container mx-auto">

@@ -134,8 +134,29 @@ graph deploy --studio graphnftmarketplace
 
 ### UPDATE FRONTEND WITH THEGRAPH
 
--   Install apollo and graphql:
+-   Install @apollo/client and graphql:
 
 ```bash
 yarn add @apollo/client graphql
 ```
+
+-   An example of how to make querys to TheGraph can be found in [graphExample.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/graphExample.js).
+
+**Notice**: You can try to write a query in your Subgraph to see the response and then write it in [graphExample.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/graphExample. Example:
+
+```bash
+{
+        activeItems(first: 5, where: { buyer: "0x00000000" }) {
+            id
+            buyer
+            seller
+            nftAddress
+            tokenId
+            price
+        }
+    }
+```
+
+-   Update [\_app.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/_app.js) to be able to make querys to your Subgraph. -> Grab your `DEVELOPMENT QUERY URL` from your Subgraph dashboard.
+
+-   Update [index.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/index.js) to use query response and show items.

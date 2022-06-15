@@ -3,9 +3,12 @@ import Head from "next/head"
 import { MoralisProvider } from "react-moralis" // Import to use Moralis tools
 import Header from "../components/Header"
 import { NotificationProvider } from "web3uikit"
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client" // To make querys to Subgraph
 
-const APP_ID = process.env.NEXT_PUBLIC_APP_ID
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
+const client = new ApolloClient({ // Make querys to Subgraph 
+    cache: new InMemoryCache(),
+    uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL,
+})
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -16,10 +19,12 @@ function MyApp({ Component, pageProps }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <MoralisProvider initializeOnMount={false}>
-                <NotificationProvider>
-                    <Header />
-                    <Component {...pageProps} />
-                </NotificationProvider>
+                <ApolloProvider client={client}>
+                    <NotificationProvider>
+                        <Header />
+                        <Component {...pageProps} />
+                    </NotificationProvider>
+                </ApolloProvider>
             </MoralisProvider>
         </div>
     )
