@@ -92,13 +92,13 @@ sudo yarn global add @graphprotocol/graph-cli
 -   Initialize subGraph (change the name):
 
 ```bash
-graph init --studio marketplace-nft-fcc
+graph init --studio graphnftmarketplace
 ```
 
 -   Execute (change name):
 
 ```bash
-mv marketplace-nft-fcc/* ./
+mv graphnftmarketplace/* ./
 and marketplace-nft-fcc folder.
 ```
 
@@ -119,9 +119,9 @@ graph codegen
 -   Deploy subGraph (change name last command):
 
 ```bash
-graph auth --studio f4633ff08ae2b7ba89bad0099f8a6e8c
+graph auth --studio XXX
 graph codegen && graph build
-graph deploy --studio marketplace-nft-fcc
+graph deploy --studio graphnftmarketplace
 ```
 
 -   Version label: v0.0.1
