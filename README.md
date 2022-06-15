@@ -71,6 +71,8 @@ You will have your local server running at: `http://localhost:3000`.
 
 ## USE THEGRAPH
 
+### SYNCHRO SUBGRAPH
+
 We are using TheGraph for reading the events. Steps:
 
 1. Index events with TheGraph ✅.
@@ -129,3 +131,11 @@ graph deploy --studio graphnftmarketplace
 ✅ SUBGRAPH DEPLOYED!!
 
 -   You can now start executing scripts from your backend and now your subGraph should be able to listen to these events.
+
+### UPDATE FRONTEND WITH THEGRAPH
+
+-   Install apollo and graphql:
+
+```bash
+yarn add @apollo/client graphql
+```
