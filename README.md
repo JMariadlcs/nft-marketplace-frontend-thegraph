@@ -159,4 +159,6 @@ yarn add @apollo/client graphql
 
 -   Update [\_app.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/_app.js) to be able to make querys to your Subgraph. -> Grab your `DEVELOPMENT QUERY URL` from your Subgraph dashboard.
 
+-   Update [subgraphQueries.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/constants/subgraphQueries.js).
+
 -   Update [index.js](https://github.com/JMariadlcs/nft-marketplace-frontend-thegraph/blob/main/pages/index.js) to use query response and show items.
